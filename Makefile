@@ -50,8 +50,8 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = Main.cpp \
-		MainWindow.cpp 
+SOURCES       = src/Main.cpp \
+		src/MainWindow.cpp 
 OBJECTS       = Main.o \
 		MainWindow.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -126,8 +126,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		MapEditor.pro MainWindow.h Main.cpp \
-		MainWindow.cpp
+		MapEditor.pro src/MainWindow.h src/Main.cpp \
+		src/MainWindow.cpp
 QMAKE_TARGET  = MapEditor
 DESTDIR       = 
 TARGET        = MapEditor
@@ -307,8 +307,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents MainWindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents Main.cpp MainWindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/MainWindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Main.cpp src/MainWindow.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -354,11 +354,11 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-Main.o: Main.cpp MainWindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Main.o Main.cpp
+Main.o: src/Main.cpp src/MainWindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Main.o src/Main.cpp
 
-MainWindow.o: MainWindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
+MainWindow.o: src/MainWindow.cpp src/MainWindow.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o src/MainWindow.cpp
 
 ####### Install
 

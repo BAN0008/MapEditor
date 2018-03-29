@@ -1,8 +1,14 @@
 #include "MainWindow.h"
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QMenu>
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
+MainWindow::MainWindow()
 {
-	//Create Menus
-	QMenu fileMenu("&File");
+	createMenus();
+}
+
+void MainWindow::createMenus()
+{
+	fileMenu = new QMenu("&File");
 	menuBar()->addMenu(fileMenu);
 }
