@@ -1,8 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtWidgets/QMainWindow>
 #include "MainEditor.h"
+#include <QtWidgets/QMainWindow>
 
 class MainWindow : public QMainWindow
 {
