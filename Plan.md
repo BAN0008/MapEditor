@@ -37,6 +37,13 @@ Confirm Dialog for deleting objects with large parameters
 - Status Bar
 - Menu Bar
 	- File
-	- Selection
-	- Help
+		- Save
+		- Save As
+		- Open
+		- Exit
+	- Edit
+		- Copy
+		- Cut
+		- Paste
+		
 - Object Property Editor
