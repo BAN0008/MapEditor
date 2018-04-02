@@ -1,15 +1,25 @@
 #include "MainWindow.h"
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QMenu>
+#include <QtWidgets/QHBoxLayout>
 
 MainWindow::MainWindow()
 {
-	setWindowTitle("Map Editor");
-	mainEditor = new MainEditor;
-	setCentralWidget(mainEditor);
-
 	createActions();
 	createMenus();
+
+	objectList = new QTableView;
+	mainEditor = new MainEditor;
+
+	QHBoxLayout *layout = new QHBoxLayout;
+	layout->addWidget(objectList);
+	layout->addWidget(mainEditor);
+
+	centralWidget = new QWidget;
+	setCentralWidget(centralWidget);
+	centralWidget->setLayout(layout);
+
+	setWindowTitle("Map Editor");
 }
 
 void MainWindow::createActions()

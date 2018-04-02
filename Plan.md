@@ -25,7 +25,7 @@
 Confirm Dialog for deleting objects with large parameters
 
 ## Global
-- Powder toy like zoom to enhance precision
+- Powder toy like zoom to enhance precision???
 
 # UI
 ## MainWindow

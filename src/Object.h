@@ -9,6 +9,7 @@ public:
 	long x, y;
 };
 
-extern std::vector<Object> objects;
+extern std::vector<Object *> objects;
+extern std::vector<Object *> selectedObjects;
 
 #endif //OBJECT_H

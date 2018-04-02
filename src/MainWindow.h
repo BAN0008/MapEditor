@@ -3,6 +3,7 @@
 
 #include "MainEditor.h"
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QTableView>
 
 class MainWindow : public QMainWindow
 {
@@ -12,10 +13,11 @@ private:
 	void createActions();
 	void createMenus();
 
+	QWidget *centralWidget;
+	QTableView *objectList;
 	MainEditor *mainEditor;
 
 	QMenu *fileMenu;
-
 	QAction *exitAction;
 };
 
