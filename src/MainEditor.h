@@ -9,6 +9,7 @@ public:
 	MainEditor();
 protected:
 	void paintEvent(QPaintEvent *event) override;
+	void mousePressEvent(QMouseEvent *event) override;
 };
 
 #endif //MAINEDITOR_H

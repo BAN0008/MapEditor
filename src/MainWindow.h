@@ -14,11 +14,12 @@ private:
 	void createMenus();
 
 	QWidget *centralWidget;
-	QTableView *objectList;
 	MainEditor *mainEditor;
 
 	QMenu *fileMenu;
 	QAction *exitAction;
 };
+
+extern QTableView *objectList;
 
 #endif //MAINWINDOW_H

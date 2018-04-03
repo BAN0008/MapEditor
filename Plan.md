@@ -1,3 +1,6 @@
+# TODO
+- Make sure that MapEditor performs well with massive densely populated maps
+
 # Actions
 ### Create Objects
 - Place Single Object

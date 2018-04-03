@@ -2,6 +2,10 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include "Object.h"
+
+QTableView *objectList;
 
 MainWindow::MainWindow()
 {
@@ -10,6 +14,10 @@ MainWindow::MainWindow()
 
 	objectList = new QTableView;
 	mainEditor = new MainEditor;
+
+	objectList->setModel(&Object::tableModel);
+	objectList->setSelectionBehavior(QAbstractItemView::SelectRows);
+	objectList->horizontalHeader()->setHighlightSections(false);
 
 	QHBoxLayout *layout = new QHBoxLayout;
 	layout->addWidget(objectList);
@@ -20,6 +28,8 @@ MainWindow::MainWindow()
 	centralWidget->setLayout(layout);
 
 	setWindowTitle("Map Editor");
+
+	Object::create(32, 128);
 }
 
 void MainWindow::createActions()
