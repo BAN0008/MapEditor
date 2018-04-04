@@ -1,6 +1,12 @@
 # TODO
 - Make sure that MapEditor performs well with massive densely populated maps
 
+# Issues
+- Dodgy selection for example deselection via middle click only works because
+  QTableView is treating middle click as a selection toggle even though it should be set
+
+
+
 # Actions
 ### Create Objects
 - Place Single Object

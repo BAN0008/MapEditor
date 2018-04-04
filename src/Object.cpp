@@ -1,5 +1,6 @@
 #include "Object.h"
 #include "MainWindow.h"
+#include <QtCore/QItemSelectionModel>
 
 std::vector<Object *> objects;
 std::vector<Object *> selectedObjects;
@@ -48,4 +49,19 @@ void Object::addToSelection(Object *object)
 		object->selected = true;
 		objectList->selectRow(index);
 	}
+}
+
+void Object::selectionChange(const QItemSelection &selected, const QItemSelection &deselected)
+{
+	int listSize = selected.indexes().size();
+	for (int i = 0; i < listSize; i++)
+	{
+		objects[selected.indexes()[i].row()]->selected = true;
+	}
+	listSize = deselected.indexes().size();
+	for (int i = 0; i < listSize; i++)
+	{
+		objects[deselected.indexes()[i].row()]->selected = false;
+	}
+
 }

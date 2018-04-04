@@ -2,10 +2,12 @@
 #define OBJECT_H
 
 #include <vector>
+#include <QtCore/QItemSelection>
 #include "ObjectTableModel.h"
 
-class Object
+class Object : public QObject
 {
+	Q_OBJECT
 public:
 	long x, y;
 	bool selected = false;
@@ -13,6 +15,8 @@ public:
 	static void remove(Object *object);
 	static void addToSelection(Object *object);
 	static ObjectTableModel tableModel;
+public slots:
+	static void selectionChange(const QItemSelection &selected, const QItemSelection &deselected);
 };
 
 extern std::vector<Object *> objects;

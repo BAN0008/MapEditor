@@ -3,6 +3,7 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtCore/QItemSelectionModel>
 #include "Object.h"
 
 QTableView *objectList;
@@ -17,7 +18,9 @@ MainWindow::MainWindow()
 
 	objectList->setModel(&Object::tableModel);
 	objectList->setSelectionBehavior(QAbstractItemView::SelectRows);
+	objectList->setSelectionMode(QAbstractItemView::MultiSelection);
 	objectList->horizontalHeader()->setHighlightSections(false);
+	QObject::connect(objectList->selectionModel(), &QItemSelectionModel::selectionChanged, &Object::selectionChange);
 
 	QHBoxLayout *layout = new QHBoxLayout;
 	layout->addWidget(objectList);
