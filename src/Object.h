@@ -5,9 +5,8 @@
 #include <QtCore/QItemSelection>
 #include "ObjectTableModel.h"
 
-class Object : public QObject
+class Object
 {
-	Q_OBJECT
 public:
 	long x, y;
 	bool selected = false;

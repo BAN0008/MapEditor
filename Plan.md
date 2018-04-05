@@ -2,9 +2,12 @@
 - Make sure that MapEditor performs well with massive densely populated maps
 
 # Issues
-- Dodgy selection for example deselection via middle click only works because
-  QTableView is treating middle click as a selection toggle even though it should be set
-
+- MainEditor not updating when Object::selectionChange is called
+- objectList causing all selection to be cleared unless
+  control is being held(see below for potential solutions)
+	- Change selection mode when selecting objects from MainEditor
+	- Change objectList selection with QItemSelectionModel(Likely the best solution)
+- Holding shift and scrolling for horizontal scrolling isn't working for objectList
 
 
 # Actions

@@ -18,7 +18,7 @@ MainWindow::MainWindow()
 
 	objectList->setModel(&Object::tableModel);
 	objectList->setSelectionBehavior(QAbstractItemView::SelectRows);
-	objectList->setSelectionMode(QAbstractItemView::MultiSelection);
+	objectList->setSelectionMode(QAbstractItemView::ExtendedSelection);
 	objectList->horizontalHeader()->setHighlightSections(false);
 	QObject::connect(objectList->selectionModel(), &QItemSelectionModel::selectionChanged, &Object::selectionChange);
 

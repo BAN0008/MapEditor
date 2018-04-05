@@ -63,5 +63,4 @@ void Object::selectionChange(const QItemSelection &selected, const QItemSelectio
 	{
 		objects[deselected.indexes()[i].row()]->selected = false;
 	}
-
 }
