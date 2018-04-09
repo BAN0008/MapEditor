@@ -4,6 +4,8 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtCore/QItemSelectionModel>
+#include <QtGui/QKeyEvent>
+#include <QtWidgets/QStatusBar>
 #include "Object.h"
 
 QTableView *objectList;
@@ -30,9 +32,10 @@ MainWindow::MainWindow()
 	setCentralWidget(centralWidget);
 	centralWidget->setLayout(layout);
 
-	setWindowTitle("Map Editor");
+	//setStatusBar(new QStatusBar());
 
-	Object::create(32, 128);
+	setWindowTitle("Map Editor");
+	setFocus();
 }
 
 void MainWindow::createActions()
@@ -46,4 +49,65 @@ void MainWindow::createMenus()
 	fileMenu = new QMenu("&File");
 	fileMenu->addAction(exitAction);
 	menuBar()->addMenu(fileMenu);
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+	qDebug("Test");
+    switch (event->key())
+    {
+        case Qt::Key_Control:
+            mainEditor->controlDown = true;
+            break;
+        case Qt::Key_Shift:
+            mainEditor->shiftDown = true;
+            break;
+        case Qt::Key_Alt:
+            mainEditor->altDown = true;
+            break;
+        case Qt::Key_Delete:
+        	qDebug("Deleting Selected Objects");
+        	for (int i = selectedObjects.size() - 1; i >= 0; i--)
+        	{
+        		Object::remove(selectedObjects[i]);
+        	}
+        	break;
+        case Qt::Key_D:
+        	if (mainEditor->controlDown && !mainEditor->shiftDown && !mainEditor->altDown)
+        	{
+        		objectList->clearSelection();
+        	}
+        	break;
+        case Qt::Key_A:
+        	if (mainEditor->controlDown && !mainEditor->shiftDown && !mainEditor->altDown)
+        	{
+        		objectList->selectAll();
+        	}
+        	break;
+        case Qt::Key_Q:
+            mainEditor->mode = MODE_ADD;
+            break;
+        case Qt::Key_W:
+            mainEditor->mode = MODE_SELECT;
+            break;
+        case Qt::Key_E:
+            mainEditor->mode = MODE_REMOVE;
+            break;
+    }
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    switch (event->key())
+    {
+        case Qt::Key_Control:
+            mainEditor->controlDown = false;
+            break;
+        case Qt::Key_Shift:
+            mainEditor->shiftDown = false;
+            break;
+        case Qt::Key_Alt:
+        	mainEditor->altDown = false;
+            break;
+    }
 }

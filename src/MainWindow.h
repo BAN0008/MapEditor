@@ -9,6 +9,9 @@ class MainWindow : public QMainWindow
 {
 public:
 	MainWindow();
+protected:
+	void keyPressEvent(QKeyEvent *event) override;
+	void keyReleaseEvent(QKeyEvent *event) override;
 private:
 	void createActions();
 	void createMenus();
