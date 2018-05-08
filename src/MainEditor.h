@@ -26,6 +26,11 @@ public:
 	bool controlDown = false;
 	bool shiftDown = false;
 	bool altDown = false;
+public slots:
+	void changeModeAdd();
+	void changeModeSelect();
+	void changeModeRemove();
+
 protected:
 	void paintEvent(QPaintEvent *event) override;
 	void mousePressEvent(QMouseEvent *event) override;

@@ -1,14 +1,14 @@
 # TODO
 - Make sure that MapEditor performs well with massive densely populated maps
 - Make a toolbar for switching modes(can be disabled under view menu)
-- Make a toolbar or menu for changing grid options
+- Make a toolbar for changing grid options
 - Change all Object static functions to take an index as a argument rather than a (Object \*)
 - Run this file through a markdown linter
-- Change function that take coordinates to use QPoint And QRect
+- Change functions that take coordinates to use QPoint And QRect
 - Fix ACTION_REMOVE_MULTIPLE removing more than one object underneath it at a time
 - Make sure that ACTION_\*REMOVE\*'s remove the top object first
-- Add Status Bar that shows the coordinates of the mouse as well as the coordinates divided by the Grid Size
-
+- Add Status Bar that shows the coordinates of the mouse as well as the coordinates divided by the grid size
+- Make sure that actions such as opening a map cancel any editor actions such as adding an object
 
 # Issues
 - MainEditor not updating when Object::selectionChange is called
@@ -51,6 +51,7 @@
 ## Ideas
 - Powder toy like zoom to enhance precision???
 - Multiple Grids with different sizes and colours???
+- Sublime Text like command input???
 
 # UI
 ## MainWindow
@@ -123,10 +124,3 @@ The last object created by Add Single will be selected
 | --------------- | ------------------ |
 | Remove Single   | Left Click         | Done
 | Remove Multiple | Shift + Left Click | Done
-
-# Grid Options
-- Toolbar
-- Context Menu
-- Dialog
-- Editable Tabed Table
-- 

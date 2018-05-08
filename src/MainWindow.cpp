@@ -5,7 +5,9 @@
 #include <QtWidgets/QHeaderView>
 #include <QtCore/QItemSelectionModel>
 #include <QtGui/QKeyEvent>
+#include <QtWidgets/QToolBar>
 #include <QtWidgets/QStatusBar>
+#include <QtGui/QBitmap>
 #include "Object.h"
 
 QTableView *objectList;
@@ -32,6 +34,43 @@ MainWindow::MainWindow()
 	setCentralWidget(centralWidget);
 	centralWidget->setLayout(layout);
 
+    toolBar = new QToolBar();
+    
+    QPixmap px = QIcon::fromTheme("list-add-symbolic").pixmap(24, 24);
+    QPixmap pxr(px.size());
+    pxr.fill(QColor(0, 150, 0));
+    pxr.setMask(px.createMaskFromColor(Qt::transparent));
+    addModeButton = new QToolButton();
+    addModeButton->setIcon(QIcon(pxr));
+    addModeButton->setToolTip("Add Mode");
+    addModeButton->setCheckable(true);
+    addModeButton->setAutoExclusive(true);
+    toolBar->addWidget(addModeButton);
+
+
+    px = QIcon::fromTheme("edit-select-all-symbolic").pixmap(24, 24);
+    pxr = QPixmap(px.size());
+    pxr.fill(QColor(0, 0, 150));
+    pxr.setMask(px.createMaskFromColor(Qt::transparent));
+    selectModeButton = new QToolButton();
+    selectModeButton->setIcon(QIcon(pxr));
+    selectModeButton->setToolTip("Select Mode");
+    selectModeButton->setCheckable(true);
+    selectModeButton->setAutoExclusive(true);
+    toolBar->addWidget(selectModeButton);
+
+    px = QIcon::fromTheme("list-remove-symbolic").pixmap(24, 24);
+    pxr = QPixmap(px.size());
+    pxr.fill(QColor(150, 0, 0));
+    pxr.setMask(px.createMaskFromColor(Qt::transparent));
+    removeModeButton = new QToolButton();
+    removeModeButton->setIcon(QIcon(pxr));
+    removeModeButton->setToolTip("Remove Mode");
+    removeModeButton->setCheckable(true);
+    removeModeButton->setAutoExclusive(true);
+    toolBar->addWidget(removeModeButton);
+
+    addToolBar(toolBar);
 	//setStatusBar(new QStatusBar());
 
 	setWindowTitle("Map Editor");
@@ -53,7 +92,6 @@ void MainWindow::createMenus()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-	qDebug("Test");
     switch (event->key())
     {
         case Qt::Key_Control:
@@ -66,7 +104,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             mainEditor->altDown = true;
             break;
         case Qt::Key_Delete:
-        	qDebug("Deleting Selected Objects");
         	for (int i = selectedObjects.size() - 1; i >= 0; i--)
         	{
         		Object::remove(selectedObjects[i]);
@@ -85,13 +122,13 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         	}
         	break;
         case Qt::Key_Q:
-            mainEditor->mode = MODE_ADD;
+            mainEditor->changeModeAdd();
             break;
         case Qt::Key_W:
-            mainEditor->mode = MODE_SELECT;
+            mainEditor->changeModeSelect();
             break;
         case Qt::Key_E:
-            mainEditor->mode = MODE_REMOVE;
+            mainEditor->changeModeRemove();
             break;
     }
 }

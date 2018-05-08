@@ -7,7 +7,9 @@
 
 MainEditor::MainEditor()
 {
-    setFixedSize(640, 480);
+    //setFixedSize(640, 480);
+    setMinimumSize(640, 480);
+    setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setCursor(Qt::CrossCursor);
 }
 
@@ -190,4 +192,20 @@ void MainEditor::mouseReleaseEvent(QMouseEvent *event)
     }
     pressAction = ACTION_NONE;
     update();
+}
+
+void MainEditor::changeModeAdd()
+{
+    mode = MODE_ADD;
+    mainWindow->addModeButton->setChecked(true);
+}
+void MainEditor::changeModeSelect()
+{
+    mode = MODE_SELECT;
+    mainWindow->selectModeButton->setChecked(true);
+}
+void MainEditor::changeModeRemove()
+{
+    mode = MODE_REMOVE;
+    mainWindow->removeModeButton->setChecked(true);
 }

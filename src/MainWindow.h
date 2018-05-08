@@ -4,11 +4,17 @@
 #include "MainEditor.h"
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QTableView>
+#include <QtWidgets/QToolButton>
 
 class MainWindow : public QMainWindow
 {
 public:
 	MainWindow();
+
+	QToolButton *addModeButton;
+	QToolButton *selectModeButton;
+	QToolButton *removeModeButton;
+
 protected:
 	void keyPressEvent(QKeyEvent *event) override;
 	void keyReleaseEvent(QKeyEvent *event) override;
@@ -21,8 +27,11 @@ private:
 
 	QMenu *fileMenu;
 	QAction *exitAction;
+
+	QToolBar *toolBar;
 };
 
 extern QTableView *objectList;
+extern MainWindow *mainWindow;
 
 #endif //MAINWINDOW_H
